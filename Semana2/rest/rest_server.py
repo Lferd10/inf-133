@@ -10,6 +10,7 @@ estudiantes = [
     },
 ]
 
+#Set-ExecutionPolicy Unrestricted -Scope Process
 class RESTRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/lista_estudiantes':

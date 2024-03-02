@@ -5,6 +5,9 @@ from pysimplesoap.server import SoapDispatcher, SOAPHandler
 def saludar(nombre):
     return "¡Hola, {}!".format(nombre)
 
+def SumaDosNumeros(a):
+    return ("la suma es: ", a)
+
 # Creamos la ruta del servidor SOAP
 dispatcher = SoapDispatcher(
     "ejemplo-soap-server",
@@ -21,6 +24,13 @@ dispatcher.register_function(
     saludar,
     returns={"saludo": str},
     args={"nombre": str},
+)
+
+dispatcher.register_function(
+    "SumaDosNumeros",
+    SumaDosNumeros,
+    returns={"saludo": str},
+    args={"a": str},
 )
 
 # Iniciamos el servidor HTTP
