@@ -18,10 +18,22 @@ class RESTRequestHandler(BaseHTTPRequestHandler):
             self.send_header("Content-type", "application/json")
             self.end_headers()
             self.wfile.write(json.dumps(estudiantes).encode("utf-8"))
+        # elif self.path.startswith("/estudiantes/"):
+        #     id = int(self.path.split("/")[-1])
+        #     estudiante = next(
+        #         (estudiante for estudiante in estudiantes if estudiante["id"] == id),
+        #         None,
+        #     )
+        #     if estudiante:
+        #         self.send_response(200)
+        #         self.send_header("Content-type", "application/json")
+        #         self.end_headers()
+        #         self.wfile.write(json.dumps(estudiante).encode("utf-8"))
+
         elif self.path.startswith("/estudiantes/"):
-            id = int(self.path.split("/")[-1])
+            carrera=self.path.split("/")
             estudiante = next(
-                (estudiante for estudiante in estudiantes if estudiante["id"] == id),
+                (estudiante for estudiante in estudiantes if estudiante["carrera"] == carrera),
                 None,
             )
             if estudiante:
@@ -88,7 +100,6 @@ class RESTRequestHandler(BaseHTTPRequestHandler):
             self.send_header("Content-type", "application/json")
             self.end_headers()
             self.wfile.write(json.dumps({"Error": "Ruta no existente"}).encode("utf-8"))
-
 
 def run_server(port=8000):
     try:
