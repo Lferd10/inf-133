@@ -3,14 +3,17 @@ import sqlite3
 
 conn = sqlite3.connect("instituto.db")
 
-conn.execute(
-    """
-    CREATE TABLE CARRERAS
-    (id INTEGER PRIMARY KEY,
-    nombre TEXT NOT NULL,
-    duracion INTEGER NOT NULL);
-    """
-)
+try :
+    conn.execute(
+        """
+        CREATE TABLE CARRERAS
+        (id INTEGER PRIMARY KEY,
+        nombre TEXT NOT NULL,
+        duracion INTEGER NOT NULL);
+        """
+    )
+except sqlite3.OperationalError:
+    print("La tabla CARRERAS ya existe")
 
 conn.execute(
     """
@@ -32,17 +35,20 @@ print("CARRERAS")
 cursor = conn.execute("SELECT * FROM CARRERAS")
 for row in cursor:
     print(row)
- 
 
-conn.execute(
-    """
-    CREATE TABLE ESTUDIANTES
-    (id INTEGER PRIMARY KEY,
-    nombre TEXT NOT NULL,
-    apellido TEXT NOT NULL,
-    fecha_nacimiento DATE NOT NULL);
-    """
-)
+
+try:
+    conn.execute(
+        """
+        CREATE TABLE ESTUDIANTES
+        (id INTEGER PRIMARY KEY,
+        nombre TEXT NOT NULL,
+        apellido TEXT NOT NULL,
+        fecha_nacimiento DATE NOT NULL);
+        """
+    )
+except sqlite3.OperationalError:
+    print("La tabla ESTUDIANTES ya existe")
 
 conn.execute(
     """
@@ -64,17 +70,20 @@ for row in cursor:
     print(row)
 
 
-conn.execute(
-    """
-    CREATE TABLE MATRICULACION
-    (id INTEGER PRIMARY KEY,
-    estudiante_id INTEGER NOT NULL,
-    carrera_id INTEGER NOT NULL,
-    fecha TEXT NOT NULL,
-    FOREIGN KEY (estudiante_id) REFERENCES ESTUDIANTES(id),
-    FOREIGN KEY (carrera_id) REFERENCES CARRERAS(id));
-    """
-)
+try:
+    conn.execute(
+        """
+        CREATE TABLE MATRICULACION
+        (id INTEGER PRIMARY KEY,
+        estudiante_id INTEGER NOT NULL,
+        carrera_id INTEGER NOT NULL,
+        fecha TEXT NOT NULL,
+        FOREIGN KEY (estudiante_id) REFERENCES ESTUDIANTES(id),
+        FOREIGN KEY (carrera_id) REFERENCES CARRERAS(id));
+        """
+    )
+except sqlite3.OperationalError:
+    print("La tabla MATRICULACION ya existe")
 
 # Insertar datos de matriculación
 conn.execute(
@@ -152,5 +161,14 @@ cursor = conn.execute(
 for row in cursor:
     print(row)
 
+
+
+
+
+#confirmar cambios
+conn.commit()
+
 # Cerrar conexión
 conn.close()
+
+
