@@ -65,13 +65,13 @@ except sqlite3.OperationalError:
 
 conn.execute(
     """
-    INSERT INTO EMPLEADOS (nombre, apellido_paterno, apellido_materno, fecha_contratacion, departamento_id, cargo_id fecha_creacion)
+    INSERT INTO EMPLEADOS (nombre, apellido_paterno, apellido_materno, fecha_contratacion, departamento_id, cargo_id, fecha_creacion)
     VALUES ('Juan', 'Gonzales', 'Perez', '15-05-2023', 1, 1, '15-05-2023')
     """
 )
 conn.execute(
     """
-    INSERT INTO EMPLEADOS (nombre, apellido_paterno, apellido_materno, fecha_contratacion, fecha_creacion)
+    INSERT INTO EMPLEADOS (nombre, apellido_paterno, apellido_materno, fecha_contratacion,departamento_id fecha_creacion)
     VALUES ('Maria', 'Lopez', 'Martinez', '20-06-2023', 2, 2 '20-06-2023')
     """
 )
