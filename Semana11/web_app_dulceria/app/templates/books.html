@@ -9,9 +9,9 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="content">
-                            <p><strong>Nombre: {{ animal.name }} </strong></p>
-                            <p><strong>Especie: {{ animal.species }}</strong></p>
-                            <p><strong>Edad: {{ animal.age }}</strong></p>
+                            <p><strong>Marca: {{ animal.name }} </strong></p>
+                            <p><strong>Peso: {{ animal.species }}</strong></p>
+                            <p><strong>Sabor: {{ animal.age }}</strong></p>
                             <div class="buttons">
                                 {% if current_user.has_role('admin') %}
                                     <a href="{{ url_for('animal.update_animal', id=animal.id) }}" 
