@@ -5,7 +5,7 @@ from flask_login import LoginManager
 from controllers import user_controller
 
 # Importamos el controlador de animales
-from controllers import dulce_controller
+from controllers import animal_controller
 
 # Importamos la base de datos
 from database import db
@@ -34,7 +34,7 @@ def load_user(user_id):
 db.init_app(app)
 # Registra el Blueprint de usuarios
 app.register_blueprint(user_controller.user_bp)
-app.register_blueprint(dulce_controller.dulce_bp)
+app.register_blueprint(animal_controller.animal_bp)
 
 if __name__ == "__main__":
     # Crea las tablas si no existen

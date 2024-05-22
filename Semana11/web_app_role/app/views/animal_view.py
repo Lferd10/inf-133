@@ -4,11 +4,11 @@ from flask_login import current_user
 
 # La función `list_animals` recibe una lista de
 # animales y renderiza el template `animales.html`
-def list_dulces(dulces):
+def list_animals(animals):
     return render_template(
-        "dulce.html",
-        dulces=dulces,
-        title="Lista de dulces",
+        "animals.html",
+        animals=animals,
+        title="Lista de animales",
         current_user=current_user,
     )
 
@@ -16,18 +16,18 @@ def list_dulces(dulces):
 # La función `create_animal` renderiza el
 # template `create_animal.html` o devuelve un JSON
 # según la solicitud
-def create_dulce():
+def create_animal():
     return render_template(
-        "create_dulce.html", title="Crear Dulce", current_user=current_user
+        "create_animal.html", title="Crear Animal", current_user=current_user
     )
 
 
 # La función `update_animal` recibe un animal
 # y renderiza el template `update_animal.html`
-def update_dulce(dulce):
+def update_animal(animal):
     return render_template(
-        "update_dulce.html",
-        title="Editar Dulce",
-        dulce=dulce,
+        "update_animal.html",
+        title="Editar Animal",
+        animal=animal,
         current_user=current_user,
     )

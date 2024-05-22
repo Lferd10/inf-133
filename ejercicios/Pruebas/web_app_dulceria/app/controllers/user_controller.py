@@ -3,7 +3,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash
 
 # Importamos el decorador de roles
-from utils.decorator import role_required
+from utils.decorators import role_required
 
 # Importamos la vista de usuarios
 from views import user_view

@@ -1,10 +1,10 @@
 from flask import Blueprint, request, redirect, url_for, flash, jsonify
 from flask_login import login_required, current_user
 from models.dulce_model import Dulce
-from views import dulce_view
+from views import animal_view
 
 # Importamos el decorador de roles
-from utils.decorator import role_required
+from utils.decorators import role_required
 
 dulce_bp = Blueprint("dulce", __name__)
 
@@ -41,7 +41,7 @@ def create_dulce():
 def update_animal(id):
     dulce = Dulce.get_by_id(id)
     if not dulce:
-        return "Dulce no encontrado", 404
+        return "Animal no encontrado", 404
     if request.method == "POST":
         if current_user.has_role("admin"):
             marca = request.form["marca"]

@@ -1,10 +1,10 @@
 from database import db
 
 
-# Define la clase `Dulce` que hereda de `db.Model`
-# `Dulce` representa la tabla `dulces` en la base de datos
+# Define la clase `Animal` que hereda de `db.Model`
+# `Animal` representa la tabla `animals` en la base de datos
 class Dulce(db.Model):
-    __tablename__ = "dulces"
+    __tablename__ = "animals"
 
     # Define las columnas de la tabla `animals`
     id = db.Column(db.Integer, primary_key=True)
@@ -13,29 +13,29 @@ class Dulce(db.Model):
     sabor = db.Column(db.String(100), nullable=False)
     origen = db.Column(db.String(100), nullable=False)
 
-    # Inicializa la clase `Dulce`
+    # Inicializa la clase `Animal`
     def __init__(self, marca, peso, sabor, origen):
         self.marca = marca
         self.peso = peso
         self.sabor = sabor
         self.origen = origen
 
-    # Guarda un dulce en la base de datos
+    # Guarda un animal en la base de datos
     def save(self):
         db.session.add(self)
         db.session.commit()
 
-    # Obtiene todos los dulces de la base de datos
+    # Obtiene todos los animales de la base de datos
     @staticmethod
     def get_all():
         return Dulce.query.all()
 
-    # Obtiene un dulce por su ID
+    # Obtiene un animal por su ID
     @staticmethod
     def get_by_id(id):
         return Dulce.query.get(id)
 
-    # Actualiza un dulce en la base de datos
+    # Actualiza un animal en la base de datos
     def update(self, marca=None, peso=None, sabor=None, origen=None):
         if marca is not None:
             self.marca = marca
@@ -48,7 +48,7 @@ class Dulce(db.Model):
         db.session.commit()
 
 
-    # Elimina un dulce de la base de datos
+    # Elimina un animal de la base de datos
     def delete(self):
         db.session.delete(self)
         db.session.commit()
